@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gestión de Laboratorio</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div id="login-section" class="container">
+        <h2>Servicios Division Electronica Colomos</h2>
+        <div class="form-group">
+            <input type="text" id="email-login" placeholder="Ingresa tu correo electrónico" required autocomplete="off">
+        </div>
+        <button id="btn-login">Entrar</button>
+    </div>
+
+    <div id="dashboard-section" class="container hidden">
+        <header>
+            <h2>Gestión de Pedidos</h2>
+            <div class="user-header">
+                <span id="user-info"></span>
+                <button id="btn-logout" class="btn-secondary btn-small">Cerrar Sesión</button>
+            </div>
+        </header>
+        
+        <div id="admin-controls" class="hidden filter-grid">
+            <div class="form-group">
+                <label>Servicio:</label>
+                <select id="filter-servicio">
+                    <option value="Todos">Todos</option>
+                    <option value="Impresión 3D">Impresión 3D</option>
+                    <option value="Ruteo de PCB">Ruteo de PCB</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Estado:</label>
+                <select id="filter-estado">
+                    <option value="Todos">Todos</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En Proceso">En Proceso</option>
+                    <option value="Terminado">Terminado</option>
+                    <option value="Entregado">Entregado</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tabla-pedidos">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Servicio</th>
+                        <th>Nombre completo</th>
+                        <th>Grupo</th>
+                        <th>Descripción</th>
+                        <th>Archivos</th>
+                        <th>Estado</th>
+                        <th>Instrucciones</th>
+                        <th id="col-acciones" class="hidden">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modal-editar" class="modal hidden">
+        <div class="modal-content">
+            <h3>Actualizar Pedido</h3>
+            <input type="hidden" id="edit-fila">
+            <input type="hidden" id="edit-correo">
+            <input type="hidden" id="edit-nombre">
+            <div class="form-group">
+                <label>Nuevo Estado:</label>
+                <select id="edit-estado">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En Proceso">En Proceso</option>
+                    <option value="Terminado">Terminado</option>
+                    <option value="Entregado">Entregado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Mensaje:</label>
+                <textarea id="edit-instrucciones" rows="3"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button id="btn-guardar-cambios">Guardar</button>
+                <button id="btn-cerrar-modal" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
